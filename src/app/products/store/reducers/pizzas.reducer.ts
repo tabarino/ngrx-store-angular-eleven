@@ -1,3 +1,4 @@
+import { act } from '@ngrx/effects';
 import { Pizza } from '../../models/pizza.model';
 import * as fromPizzas from '../actions/pizzas.action';
 
@@ -8,36 +9,7 @@ export interface PizzaState {
 }
 
 export const initialState: PizzaState = {
-    data: [{
-        id: 1,
-        name: 'Blazin\' Inferno',
-        toppings: [
-            {
-                id: 10,
-                name: 'pepperoni'
-            },
-            {
-                id: 9,
-                name: 'pepper'
-            },
-            {
-                id: 3,
-                name: 'basil'
-            },
-            {
-                id: 4,
-                name: 'chili'
-            },
-            {
-                id: 7,
-                name: 'olive'
-            },
-            {
-                id: 2,
-                name: 'bacon'
-            }
-        ]
-    }],
+    data: [],
     loading: false,
     loaded: false
 };
@@ -54,8 +26,10 @@ export function reducer(
             };
         }
         case fromPizzas.LOAD_PIZZAS_SUCCESS: {
+            const data = action.payload;
             return {
                 ...state,
+                data,
                 loading: false,
                 loaded: true
             };
