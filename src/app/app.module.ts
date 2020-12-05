@@ -7,9 +7,10 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { environment } from '../environments/environment';
-import { metaReducers } from './reducers';
-
+import { metaReducers } from './loggerReducers';
+import { reducers } from './store';
 
 @NgModule({
     declarations: [
@@ -19,9 +20,10 @@ import { metaReducers } from './reducers';
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
-        StoreModule.forRoot({}, { metaReducers }),
+        StoreModule.forRoot(reducers, { metaReducers }),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-        EffectsModule.forRoot([])
+        EffectsModule.forRoot([]),
+        StoreRouterConnectingModule.forRoot()
     ],
     providers: [],
     bootstrap: [
