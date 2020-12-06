@@ -39,15 +39,16 @@ export const getRouterState = createFeatureSelector<fromRouter.RouterReducerStat
 
 export class CustomSerializer implements fromRouter.RouterStateSerializer<RouterStateUrl> {
     serialize(routerState: RouterStateSnapshot): RouterStateUrl {
-        const { url } = routerState;
-        const { queryParams } = routerState.root;
+        // Destructure variables
+        const { url } = routerState; // Same as => const url = routerState.url;
+        const { queryParams } = routerState.root; // Same as => const queryParams = routerState.root.queryParams;
 
         let state: ActivatedRouteSnapshot = routerState.root;
         while (state.firstChild) {
             state = state.firstChild;
         }
 
-        const { params } = state;
+        const { params } = state; // Same as => const params = state.params;
 
         return { url, queryParams, params };
     }
