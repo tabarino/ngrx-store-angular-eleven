@@ -8,13 +8,13 @@ const routes: Routes = [
         component: fromContainers.ProductsComponent,
     },
     {
-        path: ':id',
-        component: fromContainers.ProductItemComponent,
-    },
-    {
         path: 'new',
         component: fromContainers.ProductItemComponent,
     },
+    {
+        path: ':pizzaId',
+        component: fromContainers.ProductItemComponent,
+    }
 ];
 
 @NgModule({
