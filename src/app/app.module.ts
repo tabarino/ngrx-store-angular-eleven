@@ -8,8 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { environment } from '../environments/environment';
-import { metaReducers } from './loggerReducers';
-import { reducers, CustomSerializer } from './store';
+import { reducers, metaReducers, CustomSerializer } from './store';
 
 @NgModule({
     declarations: [

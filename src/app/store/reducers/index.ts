@@ -1,7 +1,26 @@
 import { ActivatedRouteSnapshot, Params, RouterStateSnapshot } from '@angular/router';
-import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
+import { ActionReducer, ActionReducerMap, createFeatureSelector, MetaReducer } from '@ngrx/store';
+import { environment } from 'src/environments/environment';
 import * as fromRouter from '@ngrx/router-store';
 
+/**
+ * Logger - MetaReducer
+ */
+// tslint:disable-next-line: no-empty-interface
+export interface AppState {
+}
+
+export function logger(reducer: ActionReducer<any>): ActionReducer<any> {
+    return (state, action) => {
+        return reducer(state, action);
+    };
+}
+
+export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [logger] : [];
+
+/**
+ * Router Reducer
+ */
 export interface RouterStateUrl {
     url: string;
     queryParams: Params;
@@ -27,8 +46,8 @@ export class CustomSerializer implements fromRouter.RouterStateSerializer<Router
         while (state.firstChild) {
             state = state.firstChild;
         }
-        const { params } = state;
 
+        const { params } = state;
 
         return { url, queryParams, params };
     }
