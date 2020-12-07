@@ -1,14 +1,13 @@
-import { act } from '@ngrx/effects';
 import { Pizza } from '../../models/pizza.model';
 import * as fromPizzas from '../actions/pizzas.action';
 
-export interface PizzaState {
+export interface PizzasState {
     entities: { [id: number]: Pizza };
     loading: boolean;
     loaded: boolean;
 }
 
-export const initialState: PizzaState = {
+export const initialState: PizzasState = {
     entities: {},
     loading: false,
     loaded: false
@@ -17,7 +16,7 @@ export const initialState: PizzaState = {
 export function reducer(
     state = initialState,
     action: fromPizzas.PizzasAction
-): PizzaState {
+): PizzasState {
     switch (action.type) {
         case fromPizzas.LOAD_PIZZAS: {
             return {
@@ -27,7 +26,7 @@ export function reducer(
         }
         case fromPizzas.LOAD_PIZZAS_SUCCESS: {
             const pizzas = action.payload;
-            const entities = pizzas.reduce((pizzaEntities: { [id: number]: Pizza }, pizza) => {
+            const entities = pizzas.reduce((pizzaEntities: { [id: number]: Pizza }, pizza: Pizza) => {
                 return {
                     ...pizzaEntities,
                     [pizza.id]: pizza
@@ -55,6 +54,6 @@ export function reducer(
     return state;
 }
 
-export const getPizzasEntities = (state: PizzaState) => state.entities;
-export const getPizzasLoading = (state: PizzaState) => state.loading;
-export const getPizzasLoaded = (state: PizzaState) => state.loaded;
+export const getPizzasEntities = (state: PizzasState) => state.entities;
+export const getPizzasLoading = (state: PizzasState) => state.loading;
+export const getPizzasLoaded = (state: PizzasState) => state.loaded;
