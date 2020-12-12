@@ -34,4 +34,16 @@ export class PizzasEffects {
             );
         })
     );
+
+    @Effect()
+    updatePizza$ = this.actions$.pipe(
+        ofType(pizzasActions.UPDATE_PIZZA),
+        map((action: pizzasActions.UpdatePizza) => action.payload),
+        switchMap(pizza => {
+            return this.pizzasService.updatePizza(pizza).pipe(
+                map(pizzaUpdated => new pizzasActions.UpdatePizzaSuccess(pizzaUpdated)),
+                catchError(error => of(new pizzasActions.UpdatePizzaFail(error)))
+            );
+        })
+    );
 }
