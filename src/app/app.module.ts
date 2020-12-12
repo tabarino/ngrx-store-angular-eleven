@@ -8,7 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { environment } from '../environments/environment';
-import { reducers, metaReducers, CustomSerializer } from './store';
+import { reducers, metaReducers, effects, CustomSerializer } from './store';
 
 @NgModule({
     declarations: [
@@ -20,7 +20,7 @@ import { reducers, metaReducers, CustomSerializer } from './store';
         AppRoutingModule,
         StoreModule.forRoot(reducers, { metaReducers }),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-        EffectsModule.forRoot([]),
+        EffectsModule.forRoot(effects),
         StoreRouterConnectingModule.forRoot()
     ],
     providers: [
