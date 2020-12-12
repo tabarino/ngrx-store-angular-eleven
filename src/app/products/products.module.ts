@@ -9,6 +9,7 @@ import { reducers, effects } from './store';
 import * as fromComponents from './components';
 import * as fromContainers from './containers';
 import * as fromServices from './services';
+import * as fromGuards from './guards';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import * as fromServices from './services';
         ...fromComponents.components
     ],
     providers: [
-        ...fromServices.services
+        ...fromServices.services,
+        ...fromGuards.guards
     ],
 })
 export class ProductsModule { }
