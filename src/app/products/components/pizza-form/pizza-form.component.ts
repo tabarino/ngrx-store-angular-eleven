@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { Pizza } from '../../models/pizza.model';
@@ -7,7 +7,8 @@ import { Topping } from '../../models/topping.model';
 @Component({
     selector: 'pizza-form',
     templateUrl: './pizza-form.component.html',
-    styleUrls: ['./pizza-form.component.scss']
+    styleUrls: ['./pizza-form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PizzaFormComponent implements OnInit, OnChanges {
     @Input() pizza: Pizza;
