@@ -11,12 +11,12 @@ const routes: Routes = [
     },
     {
         path: 'new',
-        canActivate: [fromGuards.PizzasGuard],
+        canActivate: [fromGuards.PizzasGuard, fromGuards.ToppingsGuard],
         component: fromContainers.ProductItemComponent,
     },
     {
         path: ':pizzaId',
-        canActivate: [fromGuards.PizzasExistsGuard],
+        canActivate: [fromGuards.PizzasExistsGuard, fromGuards.ToppingsGuard],
         component: fromContainers.ProductItemComponent,
     }
 ];
